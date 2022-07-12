@@ -1,0 +1,28 @@
+Row: each is a person
+Column: each is a particular STR (DNA sequence that can be repeated)
+    e.g. Alice, 28, 42, 14
+    this shows that Alice has the STR in column 2 repeating 28 times (i.e. AGAT)
+
+1) Open CSV file and read contents into memory
+    1st row of 1st column called "name" (need to skip it?)
+        skip 1st column and 1st row
+    every remaining row is a person
+    csv module has reader and DictReader for reading csv's
+        as lists or dictionaries respectively
+    sys module has sys.argv for command line arguments
+    open text file with open(filename)
+    read file f with f.read()
+3) Compute longest run of all STR's in current DNA sequence
+    iterate through DNA sequence, one position at a time,
+        until find a DNA sequence
+    compute how many times STR repeats starting at current postion
+        check each successive substring until STR no longer repeats
+        len(s) built into python to find length of string s
+        s[i:j] takes string s and returns substring with all chars
+            from ith char up to, but not including jth char
+4) Compare STR counts against each row in CSV file
+    i) save sTR counts into a data structure, see very top set of comments)
+    i) for each row in data, check if STR count matches,
+        print out name of match if there is one
+    ii) print "No match" if there isn't
+    int(x) turns string x into an integer
