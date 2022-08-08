@@ -12,7 +12,10 @@ def main():
         # If anything else oustide with open, then files will be closed
     with open(sys.argv[1]) as csv_file, open(sys.argv[2]) as sequence:
         database = csv.DictReader(csv_file)
-        dna_sequence = csv.reader(sequence)
+        # Use .read() instead of csv.reader() because want to open the sequence here,
+        # but iterate over it later in the script
+        # see https://stackoverflow.com/questions/50466932/difference-between-csv-reader-and-read-when-importing-csv-file
+        dna_sequence = sequence.read()
     # Find longest match of each STR in DNA sequence
         for strs in dna_sequence:
             longest_sequence = longest_match(dna_sequence, strs)
@@ -21,7 +24,7 @@ def main():
             for field in person:
                 if field == "name":
                     continue
-                if int(person[field]) != longest_sequence[field]:
+                if (person[field]) != longest_sequence[field]:
                     break
             else:
                 print(person["name"])
